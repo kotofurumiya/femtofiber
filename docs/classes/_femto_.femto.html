@@ -1,0 +1,1039 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Femto | femtofiber</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="../assets/css/main.css">
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="../assets/js/search.js" data-base="..">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="../index.html" class="title">femtofiber</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-externals" checked />
+							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
+							<input type="checkbox" id="tsd-filter-only-exported" />
+							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<ul class="tsd-breadcrumb">
+				<li>
+					<a href="../globals.html">Globals</a>
+				</li>
+				<li>
+					<a href="../modules/_femto_.html">&quot;femto&quot;</a>
+				</li>
+				<li>
+					<a href="_femto_.femto.html">Femto</a>
+				</li>
+			</ul>
+			<h1>Class Femto</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>An object representing date.</p>
+					</div>
+					<p><code>Femto</code> is a core class of femtofiber, which represents date.</p>
+					<p>You can create a <code>Femto</code> object in several ways.</p>
+					<pre><code>const femto1 = new Femto(<span class="hljs-number">2018</span>, <span class="hljs-number">6</span>, <span class="hljs-number">22</span>);                  <span class="hljs-comment">// from number</span>
+const femto2 = new Femto(<span class="hljs-number">2018</span>, <span class="hljs-number">6</span>, <span class="hljs-number">22</span>, <span class="hljs-number">21</span>, <span class="hljs-number">54</span>, <span class="hljs-number">31</span>, <span class="hljs-number">500</span>); <span class="hljs-comment">// from numbers with time</span>
+const femto3 = Femto.fromDate(new Date());              <span class="hljs-comment">// from Date</span>
+const femto4 = Femto.now();                             <span class="hljs-comment">// from current date</span>
+const femto5 = Femto.fromEpochTime(<span class="hljs-number">1529590253022</span>);      <span class="hljs-comment">// from epoch time</span>
+</code></pre><p>A <code>Femto</code> object is immutable, so once created, its value does not change.</p>
+					<p>To get values, use properties.</p>
+					<pre><code><span class="hljs-keyword">const</span> femto = Femto.now();
+console.<span class="hljs-built_in">log</span>(femto.<span class="hljs-built_in">year</span>);
+console.<span class="hljs-built_in">log</span>(femto.<span class="hljs-built_in">month</span>); <span class="hljs-comment">// January is 1, and December is 12</span>
+console.<span class="hljs-built_in">log</span>(femto.<span class="hljs-built_in">day</span>);
+console.<span class="hljs-built_in">log</span>(femto.<span class="hljs-built_in">hour</span>);
+console.<span class="hljs-built_in">log</span>(femto.<span class="hljs-built_in">minute</span>);
+console.<span class="hljs-built_in">log</span>(femto.<span class="hljs-built_in">second</span>);
+console.<span class="hljs-built_in">log</span>(femto.millisecond);
+</code></pre><p>A <code>Femto</code> object also can output formatted string.</p>
+					<pre><code><span class="hljs-keyword">const</span> femto = Femto.now();
+<span class="hljs-built_in">console</span>.log(femto.toFormatString(<span class="hljs-string">'YYYY/MM/DD'</span>));   <span class="hljs-comment">// "2018/06/22"</span>
+<span class="hljs-built_in">console</span>.log(femto.toFormatString(<span class="hljs-string">'HH:mm:ss:SSS'</span>)); <span class="hljs-comment">// "18:23:27:758"</span>
+</code></pre><p>A <code>Femto</code> object has manipulating methods. You can manipulate date with <a href="_duration_.duration.html">Duration</a> objects.</p>
+					<pre><code><span class="hljs-keyword">const</span> tomorrow = Femto.<span class="hljs-built_in">now</span>().add(<span class="hljs-keyword">new</span> Duration({days: <span class="hljs-number">1</span>}));
+<span class="hljs-keyword">const</span> yesterday = Femto.<span class="hljs-built_in">now</span>().<span class="hljs-keyword">sub</span>(<span class="hljs-keyword">new</span> Duration({days: <span class="hljs-number">1</span>}));
+</code></pre><p>You can also compare two Femtos.</p>
+					<pre><code><span class="hljs-keyword">const</span> current = <span class="hljs-number">1529665309363</span>;
+<span class="hljs-keyword">const</span> femto1 = Femto.fromEpochTime(current);
+<span class="hljs-keyword">const</span> femto2 = Femto.fromEpochTime(current);
+
+<span class="hljs-comment">// These methods returns boolean.</span>
+femto1.isSame(femto2);
+femto1.isBefore(femto2);
+femto1.isAfter(femto2);
+femto1.isSameOrBefore(femto2);
+femto1.isSameOrAfter(femto2);
+
+Femto.now().isBetween(femto1, femto2);
+Femto.now().isBetween(femto1, femto2, {
+  includesFrom: <span class="hljs-literal">true</span>,
+  includesTo: <span class="hljs-literal">true</span>
+});
+</code></pre>
+				</div>
+			</section>
+			<section class="tsd-panel tsd-hierarchy">
+				<h3>Hierarchy</h3>
+				<ul class="tsd-hierarchy">
+					<li>
+						<span class="target">Femto</span>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel-group tsd-index-group">
+				<h2>Index</h2>
+				<section class="tsd-panel tsd-index-panel">
+					<div class="tsd-index-content">
+						<section class="tsd-index-section ">
+							<h3>Constructors</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="_femto_.femto.html#constructor" class="tsd-kind-icon">constructor</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section tsd-is-private-protected">
+							<h3>Properties</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="_femto_.femto.html#_date" class="tsd-kind-icon">_date</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="_femto_.femto.html#_formatter" class="tsd-kind-icon">_formatter</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Accessors</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="_femto_.femto.html#day" class="tsd-kind-icon">day</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="_femto_.femto.html#hour" class="tsd-kind-icon">hour</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="_femto_.femto.html#millisecond" class="tsd-kind-icon">millisecond</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="_femto_.femto.html#minute" class="tsd-kind-icon">minute</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="_femto_.femto.html#month" class="tsd-kind-icon">month</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="_femto_.femto.html#second" class="tsd-kind-icon">second</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="_femto_.femto.html#year" class="tsd-kind-icon">year</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Methods</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_femto_.femto.html#add" class="tsd-kind-icon">add</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_femto_.femto.html#isafter" class="tsd-kind-icon">is<wbr>After</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_femto_.femto.html#isbefore" class="tsd-kind-icon">is<wbr>Before</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_femto_.femto.html#isbetween" class="tsd-kind-icon">is<wbr>Between</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_femto_.femto.html#issame" class="tsd-kind-icon">is<wbr>Same</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_femto_.femto.html#issameorafter" class="tsd-kind-icon">is<wbr>Same<wbr>OrAfter</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_femto_.femto.html#issameorbefore" class="tsd-kind-icon">is<wbr>Same<wbr>OrBefore</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_femto_.femto.html#sub" class="tsd-kind-icon">sub</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_femto_.femto.html#todate" class="tsd-kind-icon">to<wbr>Date</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_femto_.femto.html#toepochtime" class="tsd-kind-icon">to<wbr>Epoch<wbr>Time</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_femto_.femto.html#toformatstring" class="tsd-kind-icon">to<wbr>Format<wbr>String</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_femto_.femto.html#toisostring" class="tsd-kind-icon">toISOString</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="_femto_.femto.html#fromdate" class="tsd-kind-icon">from<wbr>Date</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="_femto_.femto.html#fromepochtime" class="tsd-kind-icon">from<wbr>Epoch<wbr>Time</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="_femto_.femto.html#now" class="tsd-kind-icon">now</a></li>
+							</ul>
+						</section>
+					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Constructors</h2>
+				<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class">
+					<a name="constructor" class="tsd-anchor"></a>
+					<h3>constructor</h3>
+					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Femto<span class="tsd-signature-symbol">(</span>year<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, month<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, day<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, hour<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, minutes<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, seconds<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, milliseconds<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_femto_.femto.html" class="tsd-signature-type">Femto</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in femto.ts:62</li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>year: <span class="tsd-signature-type">number</span></h5>
+								</li>
+								<li>
+									<h5>month: <span class="tsd-signature-type">number</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> day: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;1</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> hour: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> minutes: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> seconds: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> milliseconds: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="_femto_.femto.html" class="tsd-signature-type">Femto</a></h4>
+						</li>
+					</ul>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group tsd-is-private-protected">
+				<h2>Properties</h2>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-protected">
+					<a name="_date" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> _date</h3>
+					<div class="tsd-signature tsd-kind-icon">_date<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Date</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in femto.ts:61</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-protected">
+					<a name="_formatter" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> _formatter</h3>
+					<div class="tsd-signature tsd-kind-icon">_formatter<span class="tsd-signature-symbol">:</span> <a href="_formatter_.femtoformatter.html" class="tsd-signature-type">FemtoFormatter</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in femto.ts:62</li>
+						</ul>
+					</aside>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Accessors</h2>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
+					<a name="day" class="tsd-anchor"></a>
+					<h3>day</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> day<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in femto.ts:246</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns the day of the month.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
+					<a name="hour" class="tsd-anchor"></a>
+					<h3>hour</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> hour<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in femto.ts:255</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns the hour of the day, according to local time.
+									The value is from 0 to 23.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
+					<a name="millisecond" class="tsd-anchor"></a>
+					<h3>millisecond</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> millisecond<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in femto.ts:279</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns the millisecond of the second, according to local time.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
+					<a name="minute" class="tsd-anchor"></a>
+					<h3>minute</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> minute<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in femto.ts:263</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns the minute of the hour, according to local time.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
+					<a name="month" class="tsd-anchor"></a>
+					<h3>month</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> month<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in femto.ts:238</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns the month beginning with 1 for January to 12 for December.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
+					<a name="second" class="tsd-anchor"></a>
+					<h3>second</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> second<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in femto.ts:271</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns the second of the minute, according to local time.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
+					<a name="year" class="tsd-anchor"></a>
+					<h3>year</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> year<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in femto.ts:230</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns the year, according to local time.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
+						</li>
+					</ul>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Methods</h2>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="add" class="tsd-anchor"></a>
+					<h3>add</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">add<span class="tsd-signature-symbol">(</span>duration<span class="tsd-signature-symbol">: </span><a href="_duration_.duration.html" class="tsd-signature-type">Duration</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_femto_.femto.html" class="tsd-signature-type">Femto</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in femto.ts:124</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns new <code>Femto</code> object which is <code>duration</code> ahead of this <code>Femto</code>.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>duration: <a href="_duration_.duration.html" class="tsd-signature-type">Duration</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="_femto_.femto.html" class="tsd-signature-type">Femto</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="isafter" class="tsd-anchor"></a>
+					<h3>is<wbr>After</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">is<wbr>After<span class="tsd-signature-symbol">(</span>other<span class="tsd-signature-symbol">: </span><a href="_femto_.femto.html" class="tsd-signature-type">Femto</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in femto.ts:171</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns <code>true</code> if this <code>Femto</code> is after <code>other</code> Femto.
+									Otherwise false.</p>
+								</div>
+								<p><strong> Note: </strong> This method returns <code>false</code> if two Femtos have same value.
+								If you want <code>true</code> when two Femtos have same value, use <code>isSameOrAfter</code>.</p>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>other: <a href="_femto_.femto.html" class="tsd-signature-type">Femto</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="isbefore" class="tsd-anchor"></a>
+					<h3>is<wbr>Before</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Before<span class="tsd-signature-symbol">(</span>other<span class="tsd-signature-symbol">: </span><a href="_femto_.femto.html" class="tsd-signature-type">Femto</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in femto.ts:158</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns <code>true</code> if this <code>Femto</code> is before <code>other</code> Femto.
+									Otherwise false.</p>
+								</div>
+								<p><strong> Note: </strong> This method returns <code>false</code> if two Femtos have same value.
+								If you want <code>true</code> when two Femtos have same value, use <code>isSameOrBefore</code>.</p>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>other: <a href="_femto_.femto.html" class="tsd-signature-type">Femto</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="isbetween" class="tsd-anchor"></a>
+					<h3>is<wbr>Between</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Between<span class="tsd-signature-symbol">(</span>from<span class="tsd-signature-symbol">: </span><a href="_femto_.femto.html" class="tsd-signature-type">Femto</a>, to<span class="tsd-signature-symbol">: </span><a href="_femto_.femto.html" class="tsd-signature-type">Femto</a>, options<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in femto.ts:211</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns <code>true</code> if this <code>Femto</code> is between <code>from</code> and <code>to&#39;.
+Otherwise</code>false`.</p>
+								</div>
+								<p>By default, this method returns <code>false</code> if this <code>Femto</code> and <code>from</code>(or <code>to</code>) are same.
+								If you want this method to include <code>from</code> or <code>to</code>, set <code>options</code> argument as follows:</p>
+								<pre><code><span class="hljs-string">femto.isBetween(from,</span> <span class="hljs-string">to,</span> <span class="hljs-string">{</span>
+<span class="hljs-attr">  includesFrom:</span> <span class="hljs-literal">true</span><span class="hljs-string">,</span>
+<span class="hljs-attr">  includesTo:</span> <span class="hljs-literal">true</span>
+<span class="hljs-string">});</span>
+</code></pre>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>from: <a href="_femto_.femto.html" class="tsd-signature-type">Femto</a></h5>
+								</li>
+								<li>
+									<h5>to: <a href="_femto_.femto.html" class="tsd-signature-type">Femto</a></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> options: <span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> =&nbsp;{}</span></h5>
+									<ul class="tsd-parameters">
+										<li class="tsd-parameter">
+											<h5><span class="tsd-flag ts-flagOptional">Optional</span> includes<wbr>From<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">true</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span></h5>
+										</li>
+										<li class="tsd-parameter">
+											<h5><span class="tsd-flag ts-flagOptional">Optional</span> includes<wbr>To<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">true</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span></h5>
+										</li>
+									</ul>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="issame" class="tsd-anchor"></a>
+					<h3>is<wbr>Same</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Same<span class="tsd-signature-symbol">(</span>other<span class="tsd-signature-symbol">: </span><a href="_femto_.femto.html" class="tsd-signature-type">Femto</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in femto.ts:145</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns <code>true</code> if this <code>Femto</code> and <code>other</code> <code>Femto</code> have completely same value.
+									Otherwise <code>false</code>.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>other: <a href="_femto_.femto.html" class="tsd-signature-type">Femto</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="issameorafter" class="tsd-anchor"></a>
+					<h3>is<wbr>Same<wbr>OrAfter</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Same<wbr>OrAfter<span class="tsd-signature-symbol">(</span>other<span class="tsd-signature-symbol">: </span><a href="_femto_.femto.html" class="tsd-signature-type">Femto</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in femto.ts:191</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns <code>true</code> if this <code>Femto</code> is same or after <code>other</code> Femto.
+									Otherwise <code>false</code>.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>other: <a href="_femto_.femto.html" class="tsd-signature-type">Femto</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="issameorbefore" class="tsd-anchor"></a>
+					<h3>is<wbr>Same<wbr>OrBefore</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Same<wbr>OrBefore<span class="tsd-signature-symbol">(</span>other<span class="tsd-signature-symbol">: </span><a href="_femto_.femto.html" class="tsd-signature-type">Femto</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in femto.ts:181</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns <code>true</code> if this <code>Femto</code> is same or before <code>other</code> Femto.
+									Otherwise <code>false</code>.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>other: <a href="_femto_.femto.html" class="tsd-signature-type">Femto</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="sub" class="tsd-anchor"></a>
+					<h3>sub</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">sub<span class="tsd-signature-symbol">(</span>duration<span class="tsd-signature-symbol">: </span><a href="_duration_.duration.html" class="tsd-signature-type">Duration</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_femto_.femto.html" class="tsd-signature-type">Femto</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in femto.ts:134</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns new <code>Femto</code> object which is <code>duration</code> behind of this <code>Femto</code>.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>duration: <a href="_duration_.duration.html" class="tsd-signature-type">Duration</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="_femto_.femto.html" class="tsd-signature-type">Femto</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="todate" class="tsd-anchor"></a>
+					<h3>to<wbr>Date</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">to<wbr>Date<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Date</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in femto.ts:295</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns <code>Date</code>.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Date</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="toepochtime" class="tsd-anchor"></a>
+					<h3>to<wbr>Epoch<wbr>Time</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">to<wbr>Epoch<wbr>Time<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in femto.ts:287</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns a number of milliseconds since January 1, 1970, 00:00:00 UTC.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="toformatstring" class="tsd-anchor"></a>
+					<h3>to<wbr>Format<wbr>String</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">to<wbr>Format<wbr>String<span class="tsd-signature-symbol">(</span>template<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in femto.ts:337</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns a string which is <code>template</code> string replaced with values.</p>
+								</div>
+								<p>This method takes a template string which includes special letters called &quot;token&quot;,
+								and replace them with their corresponding values.</p>
+								<p>For example, token &#39;YYYY&#39; will be replaced with the year value like as &#39;2018&#39;.</p>
+								<pre><code><span class="hljs-selector-tag">Femto</span><span class="hljs-selector-class">.now</span>()<span class="hljs-selector-class">.format</span>(<span class="hljs-string">'YYYY'</span>);                <span class="hljs-comment">// 2018</span>
+<span class="hljs-selector-tag">Femto</span><span class="hljs-selector-class">.now</span>()<span class="hljs-selector-class">.format</span>(<span class="hljs-string">'YYYY/MM/DD'</span>);          <span class="hljs-comment">// 2018/06/22</span>
+<span class="hljs-selector-tag">Femto</span><span class="hljs-selector-class">.now</span>()<span class="hljs-selector-class">.format</span>(<span class="hljs-string">'YYYY/MM/DD HH:mm:ss'</span>); <span class="hljs-comment">// 2018/06/22 14:32:57</span>
+</code></pre><p>In template, you can use following tokens:</p>
+								<ul>
+									<li>YYYY: year</li>
+									<li>MM: month(2-digits)</li>
+									<li>M: month</li>
+									<li>DD: day of the month(2-digits)</li>
+									<li>D: day of the month</li>
+									<li>HH: hour(2-digits)</li>
+									<li>H: hour</li>
+									<li>mm: minute(2-digits)</li>
+									<li>m: minute</li>
+									<li>ss: second(2-digits)</li>
+									<li>s: second</li>
+									<li>SSS: millisecond(3-digits)</li>
+									<li>S: millisecond</li>
+								</ul>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>template: <span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="toisostring" class="tsd-anchor"></a>
+					<h3>toISOString</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">toISOString<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in femto.ts:303</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns ISO string.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<a name="fromdate" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> from<wbr>Date</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
+						<li class="tsd-signature tsd-kind-icon">from<wbr>Date<span class="tsd-signature-symbol">(</span>date<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Date</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_femto_.femto.html" class="tsd-signature-type">Femto</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in femto.ts:90</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns a <code>Femto</code> object created by <code>date</code>.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>date: <span class="tsd-signature-type">Date</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="_femto_.femto.html" class="tsd-signature-type">Femto</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<a name="fromepochtime" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> from<wbr>Epoch<wbr>Time</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
+						<li class="tsd-signature tsd-kind-icon">from<wbr>Epoch<wbr>Time<span class="tsd-signature-symbol">(</span>epoch<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_femto_.femto.html" class="tsd-signature-type">Femto</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in femto.ts:115</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns a <code>Femto</code> object created from <code>epoch</code> time.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>epoch: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Milliseconds since January 1, 1970, 00:00:00 UTC.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="_femto_.femto.html" class="tsd-signature-type">Femto</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<a name="now" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> now</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
+						<li class="tsd-signature tsd-kind-icon">now<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_femto_.femto.html" class="tsd-signature-type">Femto</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in femto.ts:106</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns a <code>Femto</code> object which represents current time.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="_femto_.femto.html" class="tsd-signature-type">Femto</a></h4>
+						</li>
+					</ul>
+				</section>
+			</section>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class="globals  ">
+						<a href="../globals.html"><em>Globals</em></a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_duration_.html">"duration"</a>
+					</li>
+					<li class="current tsd-kind-external-module">
+						<a href="../modules/_femto_.html">"femto"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_formatter_.html">"formatter"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_index_.html">"index"</a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-class tsd-parent-kind-external-module">
+						<a href="_femto_.femto.html" class="tsd-kind-icon">Femto</a>
+						<ul>
+							<li class=" tsd-kind-constructor tsd-parent-kind-class">
+								<a href="_femto_.femto.html#constructor" class="tsd-kind-icon">constructor</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-protected">
+								<a href="_femto_.femto.html#_date" class="tsd-kind-icon">_date</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-protected">
+								<a href="_femto_.femto.html#_formatter" class="tsd-kind-icon">_formatter</a>
+							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
+								<a href="_femto_.femto.html#day" class="tsd-kind-icon">day</a>
+							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
+								<a href="_femto_.femto.html#hour" class="tsd-kind-icon">hour</a>
+							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
+								<a href="_femto_.femto.html#millisecond" class="tsd-kind-icon">millisecond</a>
+							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
+								<a href="_femto_.femto.html#minute" class="tsd-kind-icon">minute</a>
+							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
+								<a href="_femto_.femto.html#month" class="tsd-kind-icon">month</a>
+							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
+								<a href="_femto_.femto.html#second" class="tsd-kind-icon">second</a>
+							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
+								<a href="_femto_.femto.html#year" class="tsd-kind-icon">year</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_femto_.femto.html#add" class="tsd-kind-icon">add</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_femto_.femto.html#isafter" class="tsd-kind-icon">is<wbr>After</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_femto_.femto.html#isbefore" class="tsd-kind-icon">is<wbr>Before</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_femto_.femto.html#isbetween" class="tsd-kind-icon">is<wbr>Between</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_femto_.femto.html#issame" class="tsd-kind-icon">is<wbr>Same</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_femto_.femto.html#issameorafter" class="tsd-kind-icon">is<wbr>Same<wbr>OrAfter</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_femto_.femto.html#issameorbefore" class="tsd-kind-icon">is<wbr>Same<wbr>OrBefore</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_femto_.femto.html#sub" class="tsd-kind-icon">sub</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_femto_.femto.html#todate" class="tsd-kind-icon">to<wbr>Date</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_femto_.femto.html#toepochtime" class="tsd-kind-icon">to<wbr>Epoch<wbr>Time</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_femto_.femto.html#toformatstring" class="tsd-kind-icon">to<wbr>Format<wbr>String</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_femto_.femto.html#toisostring" class="tsd-kind-icon">toISOString</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+								<a href="_femto_.femto.html#fromdate" class="tsd-kind-icon">from<wbr>Date</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+								<a href="_femto_.femto.html#fromepochtime" class="tsd-kind-icon">from<wbr>Epoch<wbr>Time</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+								<a href="_femto_.femto.html#now" class="tsd-kind-icon">now</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+				<ul class="after-current">
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-module"><span class="tsd-kind-icon">Module</span></li>
+				<li class="tsd-kind-object-literal"><span class="tsd-kind-icon">Object literal</span></li>
+				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
+				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
+				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
+				<li class="tsd-kind-index-signature"><span class="tsd-kind-icon">Index signature</span></li>
+				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
+				<li class="tsd-kind-enum-member"><span class="tsd-kind-icon">Enumeration member</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-enum"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-enum"><span class="tsd-kind-icon">Method</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+				<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-interface"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-interface"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-index-signature tsd-parent-kind-interface"><span class="tsd-kind-icon">Index signature</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
+				<li class="tsd-kind-class tsd-has-type-parameter"><span class="tsd-kind-icon">Class with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class"><span class="tsd-kind-icon">Accessor</span></li>
+				<li class="tsd-kind-index-signature tsd-parent-kind-class"><span class="tsd-kind-icon">Index signature</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static property</span></li>
+				<li class="tsd-kind-call-signature tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="http://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="../assets/js/main.js"></script>
+<script>if (location.protocol == 'file:') document.write('<script src="../assets/js/search.js"><' + '/script>');</script>
+</body>
+</html>
